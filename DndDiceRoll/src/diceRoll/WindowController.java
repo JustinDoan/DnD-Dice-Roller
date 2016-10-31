@@ -15,7 +15,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Popup;
-import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class WindowController {
@@ -154,33 +153,30 @@ public class WindowController {
     
     @FXML
     void resizeWindow(MouseEvent evt) {
-    	double deltaX = 0;
-    	double deltaY = 0;
+
     	if (dragging){
     		
     		
     		double mouseLocationX = evt.getScreenX();
     	    double mouseLocationY = evt.getScreenY();
-    	    System.out.println("inloop");
-    	    
-    	    
 
-    	    double stageWidth = window.getWidth();
-    	    double stageHeight = window.getHeight();
+    	    Window w = window.getScene().getWindow();
+
+
+    	    double stageWidth = w.getWidth();
+    	    double stageHeight = w.getHeight();
     	    
-    	    deltaX =(stageWidth - (startMoveX - mouseLocationX));
-    	    deltaY =(stageHeight - (startMoveY - mouseLocationY));
+    	    System.out.println(stageWidth + (startMoveX - mouseLocationX));
+    	    System.out.println(stageHeight + (startMoveY - mouseLocationY));
+    	    window.setPrefWidth(stageWidth - (startMoveX - mouseLocationX));
+    	    window.setPrefHeight(stageHeight - (startMoveY - mouseLocationY));
     	}
-    	stopResize(deltaX,deltaY);
     }
 
-    void stopResize(double x,double y) {
+    @FXML
+    void stopResize(MouseEvent evt) {
     	startMoveX = 0;
     	startMoveY = 0;
-    	dragging = false;
-    	window.setPrefHeight(y);
-    	window.setPrefWidth(x);
-    	
     }
 
 
