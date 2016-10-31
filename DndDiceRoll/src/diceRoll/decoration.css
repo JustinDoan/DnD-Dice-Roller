@@ -1,0 +1,33 @@
+.title-bar { 
+  
+  -fx-background-color: #39a2fc;
+}
+
+.title-bar Label {
+  -fx-text-fill: white;
+}
+.title, .close-button {
+  -fx-font-family: Arial;
+  -fx-font-weight: 700;
+}
+
+.title {
+  -fx-font-size: 18px;
+  -fx-padding: 3px;
+}
+
+.close-button {
+  -fx-font-size: 12px;
+  
+}
+
+.close:hover {
+  -fx-background-color: #2b77b9;
+}
+
+.dice{
+    -fx-background-color:white;
+}
+.dice:hover{
+    -fx-background-color: #d0d0d0 ;
+}
