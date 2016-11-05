@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.text.Font?>
 
 <VBox fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="diceRoll.WindowController">
    <children>
@@ -23,7 +22,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="0.0" prefWidth="560.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="lblTitle" alignment="CENTER" styleClass="title" text="Flat Win" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="lblTitle" alignment="CENTER" styleClass="title" text="DnD Dice Roller v.1" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefWidth="40.0" styleClass="close" HBox.hgrow="SOMETIMES">
@@ -33,23 +32,39 @@
             </HBox>
          </children>
       </HBox>
-      <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+      <HBox VBox.vgrow="ALWAYS">
          <children>
-            <Label fx:id="Content" alignment="CENTER" text="Content" VBox.vgrow="ALWAYS" />
-         </children>
-      </VBox>
-      <HBox prefHeight="12.0" prefWidth="600.0">
-         <children>
-            <HBox alignment="BOTTOM_RIGHT" prefHeight="12.0" prefWidth="619.0" HBox.hgrow="ALWAYS">
+            <VBox fx:id="tabbox" prefHeight="373.0" prefWidth="180.0">
                <children>
-                  <ImageView fitHeight="15.0" fitWidth="15.0" onDragDetected="#startResizeWindow" onMouseDragReleased="#stopResize" onMouseDragged="#resizeWindow" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
-                     <image>
-                        <Image url="@../../ResizeIcon.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="SE_RESIZE" />
-                     </cursor>
-                  </ImageView>
+                  <HBox prefHeight="40.0" prefWidth="134.0">
+                     <children>
+                        <HBox fx:id="HbTabTitle" alignment="CENTER" minWidth="-Infinity" prefHeight="40.0" prefWidth="180.0" styleClass="background-Tab-Top">
+                           <children>
+                              <Label fx:id="tabTitleText" alignment="CENTER" contentDisplay="CENTER" styleClass="tabText" text="Create your Dice" textOverrun="CLIP" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#openOrCloseTab" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                           <image>
+                              <Image url="@../../arrow.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox fx:id="VbTabContent" minWidth="-Infinity" prefHeight="333.0" prefWidth="180.0" styleClass="background-Tab-Bottom" />
+                        <VBox minWidth="-Infinity" prefHeight="333.0" prefWidth="40.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox fx:id="HbDiceContainer" alignment="CENTER" prefHeight="100.0" prefWidth="380.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Content" />
                </children>
             </HBox>
          </children>

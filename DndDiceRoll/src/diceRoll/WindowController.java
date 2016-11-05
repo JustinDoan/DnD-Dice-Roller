@@ -4,6 +4,11 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.util.Random;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
@@ -11,11 +16,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Popup;
 import javafx.stage.Window;
+import javafx.util.Duration;
 
 public class WindowController {
 	Random rand = new Random();
@@ -25,12 +32,13 @@ public class WindowController {
 	private Rectangle moveTrackingRect;
 	public Image screencap;
 	private Popup moveTrackingPopup;
-	
+	public int dieNumber = 1;
 	
 	
 	
 	@FXML
     private VBox window;
+	
 	@FXML
     private ImageView ImgIconDice;
 
@@ -41,8 +49,21 @@ public class WindowController {
     private Label lblClose;
 
     @FXML
-    private Label Content;
+    private VBox tabbox;
+    
+    @FXML
+    private VBox VbTabContent;
+    
+    @FXML
+    private HBox HbTabTitle;
+    
+    @FXML
+    private Label tabTitleText;
+    
+    @FXML
+    private HBox HbDiceContainer;
 
+    
     @FXML
     void closeWindow(MouseEvent event) {
     	((Label)event.getSource()).getScene().getWindow().hide();
@@ -50,9 +71,16 @@ public class WindowController {
     @FXML
     void IconDiceChange(MouseEvent event) {
 
-    	int diceNumber = rand.nextInt(6) + 1;
+    	int newDieNumber = rand.nextInt(6) + 1;
     	
-    	File file = new File((Integer.toString(diceNumber)+ ".png"));
+    	if (dieNumber == newDieNumber){
+    		newDieNumber = newDieNumber + 1;
+    		if (newDieNumber > 6){
+    			newDieNumber = newDieNumber - 2;
+    		}
+    	}
+    	
+    	File file = new File((Integer.toString(newDieNumber)+ ".png"));
     	
     	Image die = null;
 		try {
@@ -64,7 +92,9 @@ public class WindowController {
 		}
     	
     	ImgIconDice.setImage(die);
+    	dieNumber = newDieNumber;
     }
+    
     @FXML
     public void startMoveWindow(MouseEvent evt) {
     	  setScreencap();
@@ -139,12 +169,100 @@ public class WindowController {
     }
     @FXML
     public void setScreencap() {
+    	
         WritableImage image = window.snapshot(new SnapshotParameters(), null);
         screencap = (Image) image;
         
         
     }
     @FXML
+    void openOrCloseTab(MouseEvent event) {
+    	
+    	
+    	tabAnimatedResizeVbTabContent(VbTabContent);
+    	tabAnimatedResizeHBox(HbTabTitle);
+    	tabResizeHbDiceContentResize(HbDiceContainer);
+    	/*if (HbDiceContainer.getWidth() == 380){
+    		HbDiceContainer.setPrefWidth(560);
+    	} else{
+    		HbDiceContainer.setPrefWidth(380);
+    	}*/
+    	
+    }
+    
+    public void tabResizeHbDiceContentResize(HBox DiceContainer) {
+    	int width = (int) DiceContainer.getWidth();
+    	if (width == 380){
+    		Timeline timeline = new Timeline();
+    				timeline.getKeyFrames().add(new KeyFrame(Duration.ZERO, new KeyValue(DiceContainer.prefWidthProperty(),380)));
+                    timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(.6), new KeyValue(DiceContainer.prefWidthProperty(),700)));
+
+                
+    		timeline.play();
+    	}else{
+    		Timeline timeline = new Timeline();
+    		timeline.getKeyFrames().add(new KeyFrame(Duration.ZERO, new KeyValue(DiceContainer.prefWidthProperty(),700)));
+            timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(.6), new KeyValue(DiceContainer.prefWidthProperty(),380)));
+
+                
+    		timeline.play();
+    	}
+	}
+	public void tabAnimatedResizeVbTabContent(VBox TabContent){
+    	int width = (int) TabContent.getWidth();
+    	if (width == 0){
+    		Timeline timeline = new Timeline();
+    				timeline.getKeyFrames().add(new KeyFrame(Duration.ZERO, new KeyValue(TabContent.prefWidthProperty(),0)));
+                    timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(.6), new KeyValue(TabContent.prefWidthProperty(),180)));
+
+                
+    		timeline.play();
+    	}else{
+    		Timeline timeline = new Timeline();
+    		timeline.getKeyFrames().add(new KeyFrame(Duration.ZERO, new KeyValue(TabContent.prefWidthProperty(),180)));
+            timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(.6), new KeyValue(TabContent.prefWidthProperty(),0)));
+
+                
+    		timeline.play();
+    	}
+    	
+
+    }
+    public void tabAnimatedResizeHBox(HBox TabTitle){
+    	int width = (int) TabTitle.getWidth();
+    	if (width == 0){
+    		Timeline timeline = new Timeline();
+    		
+                    timeline.getKeyFrames().add(new KeyFrame(Duration.ZERO, new KeyValue(TabTitle.prefWidthProperty(),0)));
+                    timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(.6), new KeyValue(TabTitle.prefWidthProperty(),180)));
+                    
+                
+    		timeline.play();
+    		
+    	}else{
+    		Timeline timeline = new Timeline();
+    				timeline.getKeyFrames().add(new KeyFrame(Duration.ZERO, new KeyValue(TabTitle.prefWidthProperty(),180)));
+    				timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(.6), new KeyValue(TabTitle.prefWidthProperty(),0)));
+    				
+                
+    		timeline.play();
+    		
+    	}
+    		
+    	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // This is a WIP Function.
+    /*@FXML
     void startResizeWindow(MouseEvent evt) {
     	startMoveX = evt.getScreenX();
   	  	startMoveY = evt.getScreenY();
@@ -178,6 +296,6 @@ public class WindowController {
     	startMoveX = 0;
     	startMoveY = 0;
     }
-
+	*/
 
 }

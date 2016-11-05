@@ -1,6 +1,6 @@
 .title-bar { 
   
-  -fx-background-color: #39a2fc;
+  -fx-background-color: #2a515d;
 }
 
 .title-bar Label {
@@ -22,12 +22,23 @@
 }
 
 .close:hover {
-  -fx-background-color: #2b77b9;
+  -fx-background-color: #1c323c;
 }
 
 .dice{
     -fx-background-color:white;
 }
 .dice:hover{
-    -fx-background-color: #d0d0d0 ;
+    -fx-background-color: #d0d0d0;
+}
+.background-Tab-Bottom{
+    -fx-background-color: #2a515d;
+    
+}
+.background-Tab-Top{
+    -fx-background-color: #1c323c;
+    
+}
+.tabText{
+    -fx-text-fill: white;
 }
