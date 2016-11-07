@@ -84,9 +84,9 @@
                                  <children>
                                     <Button fx:id="submitDie" mnemonicParsing="false" onAction="#createDie" prefHeight="48.0" prefWidth="132.0" text="Create" />
                                     <Label fx:id="errorMessage" styleClass="errorMessaage" />
-                                    <Label text="Created by Justin Doan" textFill="WHITE" />
                                  </children>
                               </VBox>
+                              <Label text="Created by Justin Doan" textFill="WHITE" textOverrun="CLIP" />
                            </children></VBox>
                         <VBox minWidth="-Infinity" prefHeight="333.0" prefWidth="21.0" />
                      </children>
