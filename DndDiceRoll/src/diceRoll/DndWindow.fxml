@@ -7,7 +7,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -26,7 +25,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="0.0" prefWidth="560.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="lblTitle" alignment="CENTER" styleClass="title" text="DnD Dice Roller v.1" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="lblTitle" alignment="CENTER" styleClass="title" text="DnD Dice Roller v1.0.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefWidth="40.0" styleClass="close" HBox.hgrow="SOMETIMES">
@@ -81,11 +80,13 @@
                                  </font>
                               </Label>
                               <TextField fx:id="customDieNumber" visible="false" />
-                              <StackPane alignment="BOTTOM_CENTER" maxHeight="-Infinity" prefHeight="270.0" prefWidth="180.0" VBox.vgrow="ALWAYS">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Button fx:id="submitDie" mnemonicParsing="false" onAction="#createDie" prefHeight="49.0" prefWidth="115.0" text="Create" textOverrun="CLIP" StackPane.alignment="BOTTOM_CENTER" />
+                                    <Button fx:id="submitDie" mnemonicParsing="false" onAction="#createDie" prefHeight="48.0" prefWidth="132.0" text="Create" />
+                                    <Label fx:id="errorMessage" styleClass="errorMessaage" />
+                                    <Label text="Created by Justin Doan" textFill="WHITE" />
                                  </children>
-                              </StackPane>
+                              </VBox>
                            </children></VBox>
                         <VBox minWidth="-Infinity" prefHeight="333.0" prefWidth="21.0" />
                      </children>
@@ -98,7 +99,7 @@
                      <children>
                         <HBox prefHeight="100.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="100.0" HBox.hgrow="ALWAYS">
+                              <HBox alignment="CENTER" prefHeight="100.0" styleClass="diceBorder1" HBox.hgrow="ALWAYS">
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                        <children>
@@ -117,13 +118,20 @@
                                                 <Label fx:id="customSides1" />
                                                 <Label fx:id="rollsDice1" />
                                              </children></VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label fx:id="diceTotal1">
+                                                   <font>
+                                                      <Font size="28.0" />
+                                                   </font>
+                                                </Label>
+                                             </children></VBox>
+                                          <VBox prefHeight="150.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" HBox.hgrow="ALWAYS">
+                              <HBox alignment="CENTER" prefHeight="100.0" styleClass="diceBorder2" HBox.hgrow="ALWAYS">
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                        <children>
@@ -143,13 +151,20 @@
                                                 <Label fx:id="rollsDice2" />
                                              </children>
                                           </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label fx:id="diceTotal2">
+                                                   <font>
+                                                      <Font size="28.0" />
+                                                   </font>
+                                                </Label>
+                                             </children></VBox>
+                                          <VBox prefHeight="150.0" prefWidth="100.0" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" HBox.hgrow="ALWAYS">
+                              <HBox alignment="CENTER" prefHeight="100.0" styleClass="diceBorder3" HBox.hgrow="ALWAYS">
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                        <children>
@@ -169,8 +184,15 @@
                                                 <Label fx:id="rollsDice3" />
                                              </children>
                                           </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label fx:id="diceTotal3">
+                                                   <font>
+                                                      <Font size="28.0" />
+                                                   </font>
+                                                </Label>
+                                             </children></VBox>
+                                          <VBox prefHeight="150.0" prefWidth="100.0" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -179,7 +201,7 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="diceBorder4">
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                        <children>
@@ -199,13 +221,20 @@
                                                 <Label fx:id="rollsDice4" />
                                              </children>
                                           </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label fx:id="diceTotal4">
+                                                   <font>
+                                                      <Font size="28.0" />
+                                                   </font>
+                                                </Label>
+                                             </children></VBox>
+                                          <VBox prefHeight="150.0" prefWidth="100.0" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="diceBorder5">
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                        <children>
@@ -225,13 +254,20 @@
                                                 <Label fx:id="rollsDice5" />
                                              </children>
                                           </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label fx:id="diceTotal5">
+                                                   <font>
+                                                      <Font size="28.0" />
+                                                   </font>
+                                                </Label>
+                                             </children></VBox>
+                                          <VBox prefHeight="150.0" prefWidth="100.0" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="diceBorder6">
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                        <children>
@@ -251,15 +287,43 @@
                                                 <Label fx:id="rollsDice6" />
                                              </children>
                                           </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label fx:id="diceTotal6">
+                                                   <font>
+                                                      <Font size="28.0" />
+                                                   </font>
+                                                </Label>
+                                             </children></VBox>
+                                          <VBox prefHeight="150.0" prefWidth="100.0" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
                            </children>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="rollDice" mnemonicParsing="false" onAction="#rollDice" prefHeight="60.0" prefWidth="101.0" text="Roll Dice" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Total:" textOverrun="CLIP">
+                                       <font>
+                                          <Font size="26.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="diceTotal" alignment="CENTER" textOverrun="CLIP">
+                                       <font>
+                                          <Font size="26.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children></HBox>
                      </children>
                   </VBox>
                </children>

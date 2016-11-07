@@ -50,7 +50,8 @@ public class WindowController {
 	public int dieIdNumber = 0;
 	public List<Die> CreatedDies = new ArrayList<Die>();
 	boolean customDieFlag = false;
-	public String dieLocations[] = new String[6];
+	public Die dieLocations[] = new Die[6];
+	
 	
 	@FXML
     private VBox window;
@@ -107,6 +108,15 @@ public class WindowController {
     private ImageView exit1,exit2,exit3,exit4,exit5,exit6;
     
     @FXML
+    private Button rollDice;
+    
+    @FXML
+    private Label diceTotal1,diceTotal2,diceTotal3,diceTotal4,diceTotal5,diceTotal6,diceTotal;
+    
+    @FXML
+    private Label errorMessage;
+    
+    @FXML
     void initialize() {
     	customDieNumber.setText(""); 
     	dieTypeSelection.getItems().add("Four-Sided Die");
@@ -141,23 +151,30 @@ public class WindowController {
 
     @FXML
     void createDie(ActionEvent event) {
-    	int custom = 1;
+    	
+    	int custom = 2;
     	int rolls = 1;
+    	errorMessage.setText("");
     	if (customDieFlag == false){
     		
 		}else{
 			try {
 				custom = Integer.parseInt(customDieNumber.getText());
+				if (custom < 2){
+					throw new NumberFormatException();
+				}
 			} catch (NumberFormatException e) {
-				System.out.println("Not a valid Custom Number");
+				errorMessage.setText("Not a Valid Number of Sides");
 				return;
 			}
 		}
     	
     	try {
 			rolls = Integer.parseInt(rollNumber.getText());
+			if (rolls < 1){
+				throw new NumberFormatException();
+			}
 		} catch (NumberFormatException e) {
-			System.out.println("Rolls Defaulted to 1");
 			rolls = 1;
 		}
     	
@@ -218,7 +235,7 @@ public class WindowController {
     		rollsDice1.setText(Integer.toString(CreatedDies.get(dieIdNumber).getRolls()) + " Roll(s)");
     		//This sets the DieIDNumber to a location in an array. Allowing us to manage where Dice are 
     		//Located on the dice rolling screen
-    		dieLocations[0] = dieName;
+    		dieLocations[0] = CreatedDies.get(dieIdNumber);
     	}else if(diceLabel2.getText() == ""){
     		
     		if (selection == "Custom Die"){
@@ -229,7 +246,7 @@ public class WindowController {
     	
     		rollsDice2.setText(Integer.toString(CreatedDies.get(dieIdNumber).getRolls()) + " Roll(s)");
     		
-    		dieLocations[1] = dieName;
+    		dieLocations[1] = CreatedDies.get(dieIdNumber);
     	}else if(diceLabel3.getText() == ""){
     		
     		if (selection == "Custom Die"){
@@ -240,7 +257,7 @@ public class WindowController {
     	
     		rollsDice3.setText(Integer.toString(CreatedDies.get(dieIdNumber).getRolls()) + " Roll(s)");
     		
-    		dieLocations[2] = dieName;
+    		dieLocations[2] = CreatedDies.get(dieIdNumber);
     	}else if(diceLabel4.getText() == ""){
     		
     		if (selection == "Custom Die"){
@@ -251,7 +268,7 @@ public class WindowController {
     	
     		rollsDice4.setText(Integer.toString(CreatedDies.get(dieIdNumber).getRolls()) + " Roll(s)");
     		
-    		dieLocations[3] = dieName;
+    		dieLocations[3] = CreatedDies.get(dieIdNumber);
     	}else if(diceLabel5.getText() == ""){
     		
     		if (selection == "Custom Die"){
@@ -263,7 +280,7 @@ public class WindowController {
     	
     		rollsDice5.setText(Integer.toString(CreatedDies.get(dieIdNumber).getRolls()) + " Roll(s)");
     		
-    		dieLocations[4] = dieName;
+    		dieLocations[4] = CreatedDies.get(dieIdNumber);
     	}else if(diceLabel6.getText() == ""){
     		
     		if (selection == "Custom Die"){
@@ -274,7 +291,7 @@ public class WindowController {
     	
     		rollsDice6.setText(Integer.toString(CreatedDies.get(dieIdNumber).getRolls()) + " Roll(s)");
     		
-    		dieLocations[5] = dieName;
+    		dieLocations[5] = CreatedDies.get(dieIdNumber);
     	}else{
     		System.out.println("Nowhere to go!");
     		CreatedDies.remove(dieIdNumber);
@@ -511,6 +528,7 @@ public class WindowController {
     	diceLabel1.setText("");
     	customSides1.setText("");
     	rollsDice1.setText("");
+    	diceTotal1.setText("");
     	dieLocations[0] = null;
     }
 
@@ -519,6 +537,7 @@ public class WindowController {
     	diceLabel2.setText("");
     	customSides2.setText("");
     	rollsDice2.setText("");
+    	diceTotal2.setText("");
     	dieLocations[1] = null;
     }
 
@@ -527,6 +546,7 @@ public class WindowController {
     	diceLabel3.setText("");
     	customSides3.setText("");
     	rollsDice3.setText("");
+    	diceTotal3.setText("");
     	dieLocations[2] = null;
     }
 
@@ -535,6 +555,7 @@ public class WindowController {
     	diceLabel4.setText("");
     	customSides4.setText("");
     	rollsDice4.setText("");
+    	diceTotal4.setText("");
     	dieLocations[3] = null;
     }
 
@@ -543,6 +564,7 @@ public class WindowController {
     	diceLabel5.setText("");
     	customSides5.setText("");
     	rollsDice5.setText("");
+    	diceTotal5.setText("");
     	dieLocations[4] = null;
     }
 
@@ -551,11 +573,66 @@ public class WindowController {
     	diceLabel6.setText("");
     	customSides6.setText("");
     	rollsDice6.setText("");
+    	diceTotal6.setText("");
     	dieLocations[5] = null;
     }
     
-    
-    
+    @FXML
+    void rollDice(ActionEvent event) {
+    	Random rand = new Random();
+    	int diceRolls[] = new int[6];
+    	int Total = 0;
+    	for(int i = 0;i < 6;i++){
+    		
+    		Die dieToRoll = dieLocations[i];
+    		
+    		if (dieToRoll == null){
+    			
+    		}else{
+    			int numberOfSides = dieToRoll.getNumber();
+    			int numberOfRolls = dieToRoll.getRolls();
+    			int sum = 0;
+    			
+    			for(int x = 0;x < numberOfRolls;x++){
+    				int roll = rand.nextInt(numberOfSides)+1;
+    				sum = sum + roll;
+    				
+    			}
+    			
+    			diceRolls[i] = sum;
+    			sum = 0;
+    		}
+    		
+    		
+    		
+    		
+    	}
+    	
+    	if (diceRolls[0] > 0){diceTotal1.setText(Integer.toString(diceRolls[0]));
+    	Total = Total + diceRolls[0];
+    	}
+    	if (diceRolls[1] > 0){diceTotal2.setText(Integer.toString(diceRolls[1]));
+    	Total = Total + diceRolls[1];
+    	}
+    	if (diceRolls[2] > 0){diceTotal3.setText(Integer.toString(diceRolls[2]));
+    	Total = Total + diceRolls[2];
+    	}
+    	if (diceRolls[3] > 0){diceTotal4.setText(Integer.toString(diceRolls[3]));
+    	Total = Total + diceRolls[3];
+    	}
+    	if (diceRolls[4] > 0){diceTotal5.setText(Integer.toString(diceRolls[4]));
+    	Total = Total + diceRolls[4];
+    	}
+    	if (diceRolls[5] > 0){diceTotal6.setText(Integer.toString(diceRolls[5]));
+    	Total = Total + diceRolls[5];
+    	}
+    	if (Total > 0){
+    		diceTotal.setText(Integer.toString(Total));
+    	}
+    	
+    	
+    }
+
     
     
     
