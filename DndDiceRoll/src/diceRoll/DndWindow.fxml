@@ -113,7 +113,7 @@
                                                 </ImageView>
                                              </children>
                                           </HBox>
-                                          <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="100.0">
+                                          <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="100.0" styleClass="diceBorder3">
                                              <children>
                                                 <Label fx:id="customSides1" />
                                                 <Label fx:id="rollsDice1" />
@@ -145,7 +145,7 @@
                                                 </ImageView>
                                              </children>
                                           </HBox>
-                                          <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="100.0">
+                                          <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="100.0" styleClass="diceBorder3">
                                              <children>
                                                 <Label fx:id="customSides2" />
                                                 <Label fx:id="rollsDice2" />
@@ -178,7 +178,7 @@
                                                 </ImageView>
                                              </children>
                                           </HBox>
-                                          <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="100.0">
+                                          <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="100.0" styleClass="diceBorder3">
                                              <children>
                                                 <Label fx:id="customSides3" />
                                                 <Label fx:id="rollsDice3" />
@@ -215,7 +215,7 @@
                                                 </ImageView>
                                              </children>
                                           </HBox>
-                                          <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="100.0">
+                                          <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="100.0" styleClass="diceBorder3">
                                              <children>
                                                 <Label fx:id="customSides4" />
                                                 <Label fx:id="rollsDice4" />
@@ -248,7 +248,7 @@
                                                 </ImageView>
                                              </children>
                                           </HBox>
-                                          <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="100.0">
+                                          <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="100.0" styleClass="diceBorder3">
                                              <children>
                                                 <Label fx:id="customSides5" />
                                                 <Label fx:id="rollsDice5" />
@@ -281,7 +281,7 @@
                                                 </ImageView>
                                              </children>
                                           </HBox>
-                                          <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="100.0">
+                                          <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="100.0" styleClass="diceBorder3">
                                              <children>
                                                 <Label fx:id="customSides6" />
                                                 <Label fx:id="rollsDice6" />
