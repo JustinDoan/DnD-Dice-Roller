@@ -281,7 +281,7 @@ public class WindowController {
 
 			dieLocations[5] = CreatedDies.get(dieIdNumber);
 		} else {
-			System.out.println("Nowhere to go!");
+			errorMessage.setText("No Room. Die was not Created.");
 			CreatedDies.remove(dieIdNumber);
 			return;
 		}
